@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Header Parser</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Request Header Parser Microservice</h1>
+        <div class="content">
+            <h2>API Project: Request Header Parser Microservice</h2>
+            
+            <div class="usage">
+                <h3>Example Usage:</h3>
+                <p><a href="/api/whoami">[base url]/api/whoami</a></p>
+            </div>
+
+            <div class="output">
+                <h3>Example Output:</h3>
+                <pre>
+{
+    "ipaddress": "159.20.14.100",
+    "language": "en-US,en;q=0.5",
+    "software": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+}
+                </pre>
+            </div>
+
+            <div class="try-it">
+                <h3>Try It:</h3>
+                <button onclick="getInfo()">Get My Info</button>
+                <pre id="result"></pre>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

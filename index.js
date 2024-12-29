@@ -1,16 +1,17 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 app.use(cors({optionsSuccessStatus: 200}));
-app.use(express.static('public'));
+// Update the static file serving to use absolute path
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 app.get("/api/whoami", (req, res) => {
-  // Get the real IP address
   const forwarded = req.headers['x-forwarded-for'];
   const ipaddress = forwarded ? forwarded.split(',')[0] : req.ip;
 

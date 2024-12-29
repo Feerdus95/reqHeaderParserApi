@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Header Parser Microservice</title>
+    <title>Request Header Parser</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Request Header Parser Microservice</h1>
-        <div class="usage">
-            <h3>Example Usage:</h3>
-            <p><a href="/api/whoami">[base url]/api/whoami</a></p>
-        </div>
-        <div class="output">
-            <h3>Example Output:</h3>
-            <pre>
-{
-    "ipaddress": "159.20.14.100",
-    "language": "en-US,en;q=0.5",
-    "software": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
-}
-            </pre>
-        </div>
-        <div class="try-it">
-            <h3>Try It:</h3>
-            <button onclick="getInfo()">Get My Info</button>
-            <pre id="result"></pre>
+        <h3>Example Usage:</h3>
+        <p>[base url]/api/whoami</p>
+        <h3>Example Output:</h3>
+        <p>{"ipaddress":"::1","language":"en-US,en;q=0.5","software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"}</p>
+        <div class="output-container">
+            <button id="getData">Get My Data</button>
+            <div class="results">
+                <p>IP Address: <span id="ipAddress"></span></p>
+                <p>Language: <span id="language"></span></p>
+                <p>Software: <span id="software"></span></p>
+            </div>
         </div>
     </div>
-    <script src="/script.js"></script>
+    <script>
+        document.getElementById('getData').addEventListener('click', async function() {
+            try {
+                const response = await fetch('/api/whoami');
+                const data = await response.json();
+                document.getElementById('ipAddress').textContent = data.ipaddress;
+                document.getElementById('language').textContent = data.language;
+                document.getElementById('software').textContent = data.software;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 </body>
 </html>
